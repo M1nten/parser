@@ -4,28 +4,41 @@ import sys
 def add(a, b):
     return a + b
 
-# Funktion til at Læse filen
+# Implementer check af om det er en csv_fil
+def check_filtype(filepath):
+    pass
+
+# Funktion til at Læse filen og generere en streng
 def get_csv_file(path: str) -> str:
     with open(path) as f:
         csv_file = f.read()
         return csv_file
 
+# Check for tomme strenge
+def streng_er_tom(streng:str):
+    return streng == ""
+
 # Funktion til at opdele en csv-streng på baggrund af \n
 def opdel_rækker(csv_streng:str):
-    list_csv = []
-    while (len(csv_streng)>0):
-        if "\n" in csv_streng:
-            marker = csv_streng.index('\n')
-            slice = csv_streng[0:marker]
-            list_csv.append(slice)
-            csv_streng = csv_streng[len(slice)+1:]
+    if streng_er_tom(csv_streng) == False:
+        list_csv = []
+        while (len(csv_streng)>0):
+            if "\n" in csv_streng:
+                marker = csv_streng.index('\n')
+                slice = csv_streng[0:marker]
+                list_csv.append(slice)
+                csv_streng = csv_streng[len(slice)+1:]
 
-# Tager hånd om den sidste række som ikke afsluttes af \n
-        else:
-            print(csv_streng)
-            list_csv.append(csv_streng)
-            return list_csv
-    return list_csv
+    # Tager hånd om den sidste række som ikke afsluttes af \n
+            else:
+                print(csv_streng)
+                list_csv.append(csv_streng)
+                return list_csv
+        return list_csv
+
+    else:
+        # Hvad skal der stå her?
+        return
 
 def main() -> None:
     # Gør at man kan vælge hvilken fil man læser, når man kører main.py
