@@ -1,5 +1,9 @@
 import sys
 
+#testfunktion
+def add(a, b):
+    return a + b
+
 # Funktion til at Læse filen
 def get_csv_file(path: str) -> str:
     with open(path) as f:
@@ -38,5 +42,7 @@ def main() -> None:
 
     #printer liste med rækkerne
     print(liste_med_rækker)
+
+
 
 main()
