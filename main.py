@@ -40,6 +40,24 @@ def opdel_rækker(csv_streng:str):
         # Hvad skal der stå her?
         return
 
+def opdel_til_felter_strengversion(streng):
+    liste_med_felter = []
+
+    while (len(streng)>0):
+        if "," in streng:
+            marker = streng.index(',')
+            slice = streng[0:marker]
+            liste_med_felter.append(slice)
+            streng = streng[len(slice)+1:]
+
+        else:
+            liste_med_felter.append(streng)
+            return liste_med_felter
+
+    return liste_med_felter
+
+
+
 def main() -> None:
     # Gør at man kan vælge hvilken fil man læser, når man kører main.py
     if len(sys.argv) < 2:
@@ -54,8 +72,11 @@ def main() -> None:
     liste_med_rækker = opdel_rækker(csv_streng)
 
     #printer liste med rækkerne
-    print(liste_med_rækker)
+    print(liste_med_rækker[0])
 
+
+    # afprøve opdel til felter
+    print(opdel_til_felter_strengversion(liste_med_rækker[0]))
 
 
 main()
