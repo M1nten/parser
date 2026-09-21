@@ -5,12 +5,24 @@ from main import get_csv_file
 from main import opdel_rækker
 from main import streng_er_tom
 
-#Brug kommandoen python3 -m unittest test.py til at køre tests i terminalen
+#Kør tests: python3 -m unittest test.py
+# Generer coverage rapport: python3 -m coverage run --source=main -m unittest test.py
+# python3 -m coverage report -m
 
 #eksempel på hvordan man bruger unittest
 class TestAdd(unittest.TestCase):
     def test_addition(self):
         self.assertEqual(add(2, 3), 5)
+
+class TestOpdelRækker(unittest.TestCase):
+    def setUp(self):
+        pass
+    def test_indeholderbackslash(self):
+             self.assertEqual(['hovtoblop', 'skiftigen'], opdel_rækker("hovtoblop\nskiftigen"))
+    #def test_indeholderikkebackslash(self):
+       # self.assertEqual("hovtoblop\nskiftigen\n", get_csv_file("csv_filer/testraekkeigen.csv"))
+
+
 
 #eksempel på test af stringmetoder
 class TestFiler(unittest.TestCase):
