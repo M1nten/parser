@@ -18,7 +18,7 @@ def get_csv_file(path: str) -> str:
 def streng_er_tom(streng:str):
     return streng == ""
 
-# Funktion til at opdele en csv-streng på baggrund af \n
+# Funktion til at opdele en streng til flere strenge (seperator = '\n')
 def opdel_rækker(csv_streng:str):
     if streng_er_tom(csv_streng) == False:
         list_csv = []
@@ -40,6 +40,7 @@ def opdel_rækker(csv_streng:str):
         # Hvad skal der stå her?
         return
 
+#funktion der opdeler en string til en liste af string (seperator = ',' )
 def opdel_til_felter_strengversion(streng):
     liste_med_felter = []
 
@@ -56,6 +57,19 @@ def opdel_til_felter_strengversion(streng):
 
     return liste_med_felter
 
+#funktion der opdeler en liste af strenge til en liste af lister (seperator: ',')
+def opdel_til_felter_listeversion(liste_med_strenge):
+    liste_med_lister = []
+
+    i = 0
+    #while i<31:
+    while len(liste_med_strenge)>1:
+        liste_med_lister.append(opdel_til_felter_strengversion(liste_med_strenge[i]))
+        del liste_med_strenge[i]
+
+    liste_med_lister.append(opdel_til_felter_strengversion(liste_med_strenge[0]))
+
+    return liste_med_lister
 
 
 def main() -> None:
@@ -68,15 +82,20 @@ def main() -> None:
     #kalder funktion til at lave en streng
     csv_streng = get_csv_file(file_path)
 
-    #kalder funktion til at opdele strengen efter rækker (\n)
+    #kalder funktion til at opdele strengen efter rækker (\n) --> liste
     liste_med_rækker = opdel_rækker(csv_streng)
 
+    #kalder funktion til opdele rækkerne i felter --> liste af lister
+    listede_liste = opdel_til_felter_listeversion(liste_med_rækker)
+
+    print(listede_liste)
+
     #printer liste med rækkerne
-    print(liste_med_rækker[0])
+   # print(liste_med_rækker[0])
 
 
     # afprøve opdel til felter
-    print(opdel_til_felter_strengversion(liste_med_rækker[0]))
+    #print(opdel_til_felter_strengversion(liste_med_rækker[0]))
 
 
 main()
